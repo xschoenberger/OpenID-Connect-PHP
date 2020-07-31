@@ -654,7 +654,9 @@ class OpenIDConnectClient
     public function requestClientCredentialsToken() {
         $token_endpoint = $this->getProviderConfigValue('token_endpoint');
 
-        $headers = [];
+	$headers = [
+	   'Authorization: Basic ' . base64_encode(urlencode($this->clientID) . ':' . urlencode($this->clientSecret))
+	];
 
         $grant_type = 'client_credentials';
 
